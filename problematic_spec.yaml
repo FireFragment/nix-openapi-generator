@@ -1,0 +1,43 @@
+---
+# This is a sample Swagger spec
+swagger: "2.0"
+info:
+  description: Application Description
+  version: 1.0.0
+  title: Application
+host: 0.0.0.0:8080
+basePath: /api/v1.0
+schemes:
+- http
+paths:
+  /default/ApiTestSetup:
+    get:
+      operationId: apiTestConfigurationGet
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters :
+      - name : "body"
+        in : "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/Person"
+definitions:
+  Person:
+    type: object
+    properties:
+      children:
+        type: array
+        items:
+          $ref: '#/definitions/Child'
+  Child:
+    type: object
+    properties:
+      person:
+        $ref: '#/definitions/Person'

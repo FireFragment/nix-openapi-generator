@@ -57,7 +57,6 @@ rec {
 
     generators = createGeneratorsSet {
         "c" = {
-            #dontBuildBinaryReason = "TODO";
             binaryOverrides = { src, ... } : {
                 nativeBuildInputs = with pkgs; [ cmake ];
                 buildInputs = with pkgs; [ curl ];

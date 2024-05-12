@@ -72,15 +72,15 @@ rec {
                 buildInputs = with pkgs; [ openssl ];
                 #src = "${src}/client";
                 cargoSha256 = "sha256-sHBIalZTEv/zy6Y8E1FOoDrj2G+uRRaUH3kgSSqOVRE=";
-            };*/
+            };
+            binaryBuilder = pkgs.rustPlatform.buildRustPackage;
+            */
 
             srcOverrides = { buildPhase ? "", ... } : {
                 buildPhase = "
                     ${buildPhase}
                     cp ${pkgs.writeText "cargo-lock-for-openapi-rust" ((import generators/rust/Cargo.lock.nix) {})} ./Cargo.lock";
             };
-
-            binaryBuilder = pkgs.rustPlatform.buildRustPackage;
         };
     };
 

@@ -3,10 +3,6 @@
 let
     lib = (import ./default.nix) { inherit pkgs; };
     testingSpec = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/marscod/ollama/f8b0324477469562bab5e6b352c8d6e2759533ac/api/ollama_api_specification.json";
-        sha256 = "sha256-hsSLRHgcVGV3G0fmOQ+ZNkD3FH7lDXNaTvQHXTRz624=z";
-    };
-    testingSpec2 = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml";
         sha256 = "sha256-WYE2y5BOF+ju6tUa4z3Y1AH9/0VdLXTzhpxKpfJ0ImY=";
     };

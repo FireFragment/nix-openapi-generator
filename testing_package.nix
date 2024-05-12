@@ -27,7 +27,7 @@ let
                     ''
                     else ''
                         ln -s ${pkgs.writeText "nix-openapi-generator-test-${generator-name}-unsupported-binary.txt" generated.dontBuildBinaryReason} $out/binaries/${generator-name}-not-supported.txt
-                        echo "${generator-name} doesn't support building a binary. Reason: ${generated.dontBuildBinaryReason}"
+                        echo "${generator-name} doesn't support building a binary. Reason: ${builtins.replaceStrings ["\n"] ["\n  "] generated.dontBuildBinaryReason}"
                     ''
                 )
             ];

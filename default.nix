@@ -70,6 +70,7 @@ rec {
                 src = "${src}/client";
             };
         };
+
         "rust" = {
             dontBuildBinaryReason = ''
                 Rust libraries are almost always built from source by the user - Rust libraries are not often obtained as binaries.

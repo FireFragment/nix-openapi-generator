@@ -55,41 +55,10 @@ rec {
             )))
             generators;
 
-    generators = createGeneratorsSet {
-        "c" = {
-            binaryOverrides = { src, ... } : {
-                nativeBuildInputs = with pkgs; [ cmake ];
-                buildInputs = with pkgs; [ curl ];
-            };
-        };
-
-        "cpp-qt-client" = {
-            binaryOverrides = { src, ... } : {
-                nativeBuildInputs = with pkgs; [ cmake libsForQt5.wrapQtAppsHook ];
-                buildInputs = with pkgs; [ libsForQt5.qtbase ];
-                src = "${src}/client";
-            };
-        };
-
-        "rust" = {
-            dontBuildBinaryReason = ''
-                Rust libraries are almost always built from source by the user - Rust libraries are not often obtained as binaries.
-                You should use the generated source instead.
-            '';
-            /*binaryOverrides = { src, ... } : {
-                nativeBuildInputs = with pkgs; [ pkg-config ];
-                buildInputs = with pkgs; [ openssl ];
-                #src = "${src}/client";
-                cargoSha256 = "sha256-sHBIalZTEv/zy6Y8E1FOoDrj2G+uRRaUH3kgSSqOVRE=";
-            };
-            binaryBuilder = pkgs.rustPlatform.buildRustPackage;
-            */
-
-            srcOverrides = { buildPhase ? "", ... } : {
-                buildPhase = "
-                    ${buildPhase}
-                    cp ${pkgs.writeText "cargo-lock-for-openapi-rust" ((import generators/rust/Cargo.lock.nix) {})} ./Cargo.lock";
-            };
-        };
-    };
+    generators = createGeneratorsSet
+        (builtins.mapAttrs
+            (name: fs_item_type: import (./. + ("/generators/" + name)) { inherit pkgs; })
+            (pkgs.lib.attrsets.filterAttrs
+                (name: fs_item_type: fs_item_type == "directory")
+                (builtins.readDir ./generators)));
 }

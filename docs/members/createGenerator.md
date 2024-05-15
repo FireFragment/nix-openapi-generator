@@ -15,6 +15,10 @@ createGenerator {
 }
 ```
 
+## Returns
+
+A value of type [`Generator`](../types/generator.md)
+
 ## Arguments
 
 ### `generatorName`

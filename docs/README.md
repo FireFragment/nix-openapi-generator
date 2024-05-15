@@ -8,5 +8,5 @@
 
 ### Types
 
-- **Generator** \
+- **[Generator](types/generator.md)** \
   A function taking OpenAPI spec and returning derivation with the client/server library

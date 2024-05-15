@@ -3,7 +3,7 @@
 let
     lib = (import ./default.nix) { inherit pkgs; };
     testingSpec = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml";
+        url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/9df68a1dafd467d9fdbf68653f351b860b4ec6e5/examples/v3.0/petstore.yaml";
         sha256 = "sha256-WYE2y5BOF+ju6tUa4z3Y1AH9/0VdLXTzhpxKpfJ0ImY=";
     };
 

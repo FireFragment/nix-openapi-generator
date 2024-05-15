@@ -10,8 +10,7 @@ let
     createCommandForGeneratorName =
         generator-name:
             let
-                generator = lib.getGenerator generator-name;
-                generated = generator { specification = testingSpec; };
+                generated = (lib.getGenerator generator-name) { specification = testingSpec; };
             in
             builtins.concatStringsSep "\n" [
                 ''
@@ -28,7 +27,10 @@ let
                     ''
                 )
             ];
-    commands = builtins.map createCommandForGeneratorName ["rust" "c" "go"];  #builtins.mapAttrs createCommandForAttr lib.generators;
+    commands =
+        builtins.map
+            createCommandForGeneratorName
+            (["go"]  ++ builtins.attrNames lib.generators);  #builtins.mapAttrs createCommandForAttr lib.generators;
     buildScript = builtins.concatStringsSep "\n" commands;
 in
 

@@ -24,16 +24,16 @@ rec {
 
     createGenerator = { generatorName, dontBuildBinaryReason ? null, binaryOverrides ? { ... }: {}, binaryBuilder ? pkgs.stdenv.mkDerivation, srcOverrides ? { ... }: {}, ... } : { specification } :
         let
-            source-code = generateSrcFromSpec {
+            sourceCode = generateSrcFromSpec {
                 inherit specification generatorName srcOverrides;
             };
             default-binary = {
                 name = "${generatorName}-openapi-generated-lib";
-                src = source-code;
+                src = sourceCode;
             };
         in
         rec {
-            inherit source-code generatorName dontBuildBinaryReason;
+            inherit sourceCode generatorName dontBuildBinaryReason;
             binary =
                 if dontBuildBinaryReason == null then
                     binaryBuilder (default-binary // (binaryOverrides default-binary))

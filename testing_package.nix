@@ -15,7 +15,7 @@ let
             builtins.concatStringsSep "\n" [
                 ''
                     echo "Symlinking OpenAPI generated library: ${generator-name}"
-                    ln -s ${generated.generated-src} $out/sources/${generator-name}
+                    ln -s ${generated.source-code} $out/sources/${generator-name}
                 ''
                 (
                     if generated.dontBuildBinaryReason == null then ''

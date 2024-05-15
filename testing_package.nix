@@ -7,9 +7,10 @@ let
         sha256 = "sha256-WYE2y5BOF+ju6tUa4z3Y1AH9/0VdLXTzhpxKpfJ0ImY=";
     };
 
-    createCommandForAttr =
-        generator-name: generator:
+    createCommandForGeneratorName =
+        generator-name:
             let
+                generator = lib.getGenerator generator-name;
                 generated = generator { specification = testingSpec; };
             in
             builtins.concatStringsSep "\n" [
@@ -27,8 +28,8 @@ let
                     ''
                 )
             ];
-    commands = builtins.mapAttrs createCommandForAttr lib.generators;
-    buildScript = builtins.concatStringsSep "\n" (builtins.attrValues commands);
+    commands = builtins.map createCommandForGeneratorName ["rust" "c" "go"];  #builtins.mapAttrs createCommandForAttr lib.generators;
+    buildScript = builtins.concatStringsSep "\n" commands;
 in
 
 pkgs.stdenv.mkDerivation {

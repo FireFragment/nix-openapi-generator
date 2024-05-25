@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
-    openapi-generator.url = "..";
+    openapi-generator.url = "github:FireFragment/nix-openapi-generator";
   };
 
   outputs = {

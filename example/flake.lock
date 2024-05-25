@@ -38,11 +38,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1716639397,
-        "narHash": "sha256-utwNZroEFB5CpyV7Z9VNnoPRrb7eZTH8OQA8QsnRNsU=",
+        "lastModified": 1716641494,
+        "narHash": "sha256-Q7bRxVJ1GxumAkA1r+UPxs0/2qwns4NmMUFljAjT+TM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ae1ff88daebb6a964fa503e483019a1d1b430bab",
+        "rev": "5b3baf01c4f2915a240354c1cda2889e488c2f65",
         "type": "github"
       },
       "original": {
@@ -72,14 +72,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-5mt+BCZUKvZy3sTINNm0jcHdl3XIHtK1NWO1UEvSW/Q=",
-        "path": "/nix/store/4cqf0bcllm7i9kaki0hyhyghaj5ry5si-source",
-        "type": "path"
+        "lastModified": 1716640420,
+        "narHash": "sha256-bb8uV99wd1CVWrrlH7l7ME0uG7JxbIcG75j2M7ijtCg=",
+        "owner": "FireFragment",
+        "repo": "nix-openapi-generator",
+        "rev": "fc7ab69f2c17dd9a6cc020951d3d314e442dda39",
+        "type": "github"
       },
       "original": {
-        "path": "/nix/store/4cqf0bcllm7i9kaki0hyhyghaj5ry5si-source",
-        "type": "path"
+        "owner": "FireFragment",
+        "repo": "nix-openapi-generator",
+        "type": "github"
       }
     },
     "root": {

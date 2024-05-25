@@ -13,7 +13,7 @@ For some generators such as `c` or `cpp-qt-client`, this flake allows you to com
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
-    openapi-generator.url = "..";
+    openapi-generator.url = "github:FireFragment/nix-openapi-generator";
   };
 
   outputs = {
@@ -51,7 +51,7 @@ It can also generate source code using any generator listed on the [OpenAPI gene
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
-    openapi-generator.url = "..";
+    openapi-generator.url = "github:FireFragment/nix-openapi-generator";
   };
 
   outputs = {

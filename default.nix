@@ -2,8 +2,13 @@
 let
 
     # Generate source code from an OpenAPI specification
-    generateSrcFromSpec = { specification, generatorName, srcOverrides ? { ... }: {} } :
+    generateSrcFromSpec = { specification, generatorName, srcOverrides ? { ... }: {}, configuration ? {} } :
         let
+            configArg = builtins.concatStringsSep "," (
+                pkgs.lib.attrsets.mapAttrsToList
+                    (name: value: "${name}=${value}")
+                    configuration
+            );
             default-src = {
                 #inherit attrs;
 
@@ -12,7 +17,7 @@ let
                 nativeBuildInputs = with pkgs; [ openapi-generator-cli ];
 
                 buildPhase = ''
-                    ${pkgs.openapi-generator-cli}/bin/openapi-generator-cli generate -i ${specification} -g ${generatorName}
+                    ${pkgs.openapi-generator-cli}/bin/openapi-generator-cli generate -i ${specification} -g ${generatorName} --additional-properties=${configArg}
                 '';
 
                 installPhase = ''
@@ -23,10 +28,12 @@ let
             };
         in pkgs.stdenv.mkDerivation (default-src // srcOverrides default-src);
 
-    createGenerator = { generatorName, dontBuildBinaryReason ? null, binaryOverrides ? { ... }: {}, binaryBuilder ? pkgs.stdenv.mkDerivation, srcOverrides ? { ... }: {}, ... } : { specification } :
+    createGenerator = { generatorName, dontBuildBinaryReason ? null, binaryOverrides ? { ... }: {}, binaryBuilder ? pkgs.stdenv.mkDerivation, srcOverrides ? { ... }: {}, configPreprocess ? c: c, ... } :
+        { specification, configuration ? {} }:
         let
             sourceCode = generateSrcFromSpec {
                 inherit specification generatorName srcOverrides;
+                configuration = configPreprocess configuration;
             };
             default-binary = {
                 name = "${generatorName}-openapi-generated-lib";

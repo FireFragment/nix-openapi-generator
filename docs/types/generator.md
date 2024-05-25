@@ -1,6 +1,6 @@
 # Type `Generator`
 
-Corresponds to one of the generators listed [here on OpenAPI generator website](https://openapi-generator.tech/docs/generators). This is returned by the [`createGenerator`](../members/createGenerator.md) function.
+Corresponds to one of the generators listed [here on OpenAPI generator website](https://openapi-generator.tech/docs/generators). This is returned by the [`getGenerator`](../members/getGenerator.md) function.
 
 It's a function taking an OpenAPI spec and returning the generated source code and compiled binary if supported.
 
